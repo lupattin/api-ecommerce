@@ -9,11 +9,14 @@
     "start": "next"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "airtable": "^0.11.4",
     "algoliasearch": "^4.14.2",
+    "date-fns": "^2.29.2",
     "firebase-admin": "^11.0.1",
     "micro-method-router": "^0.1.0",
     "next": "^12.2.5",
+    "random-seed": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
