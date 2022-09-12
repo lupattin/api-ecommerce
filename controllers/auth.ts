@@ -1,8 +1,10 @@
 import { User } from "../models/user";
 import { Auth } from "../models/auth";
 import addMinutes from "date-fns/addMinutes";
+import isFuture from "date-fns/isFuture";
 import gen from "random-seed";
 import { sendMail } from "../lib/sendgrid";
+import { generateToken } from "../lib/jwt";
 
 const randomNumber = gen.create();
 
@@ -21,7 +23,7 @@ export async function findOrCreateAuth(email: string): Promise<Auth> {
       auth.data.expire = twentyMinutesExpire;
 
       await auth.push();
-      await sendMail(email, code)
+      await sendMail(email, code);
 
       return auth.data;
     } else {
@@ -38,11 +40,26 @@ export async function findOrCreateAuth(email: string): Promise<Auth> {
         expire: twentyMinutesExpire,
       });
 
-      await sendMail(email, code)
+      await sendMail(email, code);
 
       return newAuth.data;
     }
   } catch (error) {
-    return error
+    return error;
+  }
+}
+
+export async function checkCode(email: string, code: number): Promise<String | Boolean> {
+  try {
+    const result = await Auth.findByEmail(email);
+    const authData = result.data;
+    if (code == authData.code && isFuture(authData.expire.toDate())) {
+      const token = generateToken(authData);
+      return token;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    throw error;
   }
 }
