@@ -17,7 +17,7 @@ export function authMiddleware(callback): Function{
         const userData = new User(decoded.id)
         await userData.pull()
         
-        callback(req,res,userData.data)
+        callback(req, res, userData)
 
        }else{
         res.status(401).send("Incorrect Token")

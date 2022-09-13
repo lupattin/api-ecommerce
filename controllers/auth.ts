@@ -8,7 +8,7 @@ import { generateToken } from "../lib/jwt";
 
 const randomNumber = gen.create();
 
-export async function findOrCreateAuth(email: string): Promise<Auth> {
+export async function findOrCreateAuth(email: string, name:string): Promise<Auth> {
   const cleanEmail = email.trim().toLowerCase();
   try {
     const auth = await Auth.findByEmail(cleanEmail);
@@ -32,7 +32,7 @@ export async function findOrCreateAuth(email: string): Promise<Auth> {
       const dateNow = new Date();
       const twentyMinutesExpire = addMinutes(dateNow, 20);
 
-      const newUser = await User.createNewUser({ email });
+      const newUser = await User.createNewUser({ email, name });
       const newAuth = await Auth.createNewAuth({
         email,
         id: newUser.id,
