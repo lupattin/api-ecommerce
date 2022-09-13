@@ -6,20 +6,37 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next"
+    "start": "next",
+    "test": "ava"
+  },
+  "ava": {
+    "nodeArguments": [
+      "--loader=esbuild-node-loader",
+      "--experimental-specifier-resolution=node"
+    ],
+    "environmentVariables": {
+      "TESTING": "true",
+      "JWT_SECRET": "testingSecret"
+    },
+    "extensions": {
+      "ts": "module"
+    }
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
     "airtable": "^0.11.4",
     "algoliasearch": "^4.14.2",
+    "ava": "^4.3.3",
     "date-fns": "^2.29.2",
+    "esbuild-node-loader": "^0.8.0",
     "firebase-admin": "^11.0.1",
     "jsonwebtoken": "^8.5.1",
     "micro-method-router": "^0.1.0",
     "next": "^12.2.5",
     "random-seed": "^0.3.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "^18.7.14",
