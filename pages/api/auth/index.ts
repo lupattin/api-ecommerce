@@ -19,7 +19,7 @@ export default methods({
       res.status(422).send({field:"body", error})
     }
     try {
-      const result = await findOrCreateAuth(req.body.email, req.body.name)
+      await findOrCreateAuth(req.body.email, req.body.name)
       res.status(200).send("Codigo enviado correctamente")
       
     } catch (error) {

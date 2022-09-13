@@ -10,15 +10,12 @@ export async function sendMail(to: string, code: number) {
     text: `Hola, tu codigo para ingresar es: ${code} `,
   };
   sgMail
-    .send(msg)
-    .then((res) => {
-      console.log(res);
-      
-      return res;
-    })
-    .catch((error) => {
-      console.log(error);
-      
-      throw error;
-    });
+    
+  try {
+    const result = await sgMail.send(msg)
+    return result
+    
+  } catch (error) {
+    throw error
+  }
 }
