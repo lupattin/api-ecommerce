@@ -12,9 +12,13 @@ export async function sendMail(to: string, code: number) {
   sgMail
     .send(msg)
     .then((res) => {
+      console.log(res);
+      
       return res;
     })
     .catch((error) => {
-      return error;
+      console.log(error);
+      
+      throw error;
     });
 }
