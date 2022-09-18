@@ -15,15 +15,15 @@ export default methods({
 
     try {
       await bodySchema.validate(req.body)
+      try {
+        await findOrCreateAuth(req.body.email, req.body.name)
+        res.status(200).send("Codigo enviado correctamente")
+        
+      } catch (error) {
+        res.status(500).send("Hubo un error, por favor, intentar mas tarde")
+      }
     } catch (error) {
       res.status(422).send({field:"body", error})
-    }
-    try {
-      await findOrCreateAuth(req.body.email, req.body.name)
-      res.status(200).send("Codigo enviado correctamente")
-      
-    } catch (error) {
-      res.status(500).send("Hubo un error, por favor, intentar mas tarde")
     }
     
   }
