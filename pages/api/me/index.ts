@@ -18,11 +18,13 @@ function getHandler(req: NextApiRequest, res: NextApiResponse, userData:User) {
 async function patchHandler(req: NextApiRequest, res: NextApiResponse, userData:User){
   try {
     await bodySchema.validate(req.body)
+    
+    const result = await updateUser(userData, req.body)
+    res.send(result)
+
   } catch (error) {
     res.status(422).send({field:"body", error})
   }
-  const result = await updateUser(userData, req.body)
-  res.send(result)
 }
 
 const handler = methods({

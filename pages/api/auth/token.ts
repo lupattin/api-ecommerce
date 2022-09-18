@@ -14,16 +14,17 @@ export default methods({
     
     try {
       await bodySchema.validate(req.body)
+      const result = await checkCode(req.body.email, req.body.code)
+      
+      if(result == false){
+  
+        res.status(401).send("Incorrect code or expired.")
+      }else{
+        res.status(200).send(result)
+      }
+      
     } catch (error) {
       res.status(422).send({field:"body", error})
-    }
-    const result = await checkCode(req.body.email, req.body.code)
-    
-    if(result == false){
-
-      res.status(401).send("Incorrect code or expired.")
-    }else{
-      res.status(200).send(result)
     }
   }
 })
