@@ -1,4 +1,4 @@
-import { firestore } from "../lib/firestore";
+import { firestore } from "../db/firestore";
 
 const collection = firestore.collection("auth");
 export class Auth {

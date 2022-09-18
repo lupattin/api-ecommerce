@@ -1,7 +1,7 @@
 import { firestore } from "../db/firestore";
 
-const collection = firestore.collection("users");
-export class User {
+const collection = firestore.collection("orders");
+export class Order {
   ref: FirebaseFirestore.DocumentReference;
   id: string
   data: any;
@@ -16,11 +16,13 @@ export class User {
   async push(){
     this.ref.update(this.data)
   }
-  static async createNewUser(data) {
-    const newUserSnap = await collection.add(data);
-    const newUser = new User(newUserSnap.id);
-    newUser.id = newUserSnap.id
+  static async createNewOrder(data={}){
+    const newOrderSnap = await collection.add(data);
+    const newOrder = new Order(newOrderSnap.id);
+    newOrder.data = data
+    newOrder.data.createdAt = new Date()
     
-    return newUser;
+    return newOrder;
+
   }
 }
