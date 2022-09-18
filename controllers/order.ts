@@ -1,7 +1,10 @@
 import { Order } from "../models/order";
 import { createPreference } from "../lib/mercadopago";
 
-/* "https://api-ecommerce-roan.vercel.app/api/ipn/mercadopago" */
+/* "https://api-ecommerce-roan.vercel.app/api/ipn/mercadopago" 
+    "https://webhook.site/117446ea-2c40-4731-81c4-2b3f3532acbb"
+
+*/
 
 export async function createOrder(aditionalInfo, productID, userID) {
   try {
@@ -21,7 +24,7 @@ export async function createNewPreference(productData, orderID) {
     const newPreference = await createPreference({
       external_reference: orderID,
       notification_url:
-        "https://webhook.site/117446ea-2c40-4731-81c4-2b3f3532acbb",
+        "https://api-ecommerce-roan.vercel.app/api/ipn/mercadopago",
 
       items: [
         {
