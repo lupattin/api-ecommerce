@@ -8,6 +8,8 @@ export default methods({
     const {id, topic} = req.query;
 
     if(topic == "merchant_order"){
+      
+      
       const order = await getMerchantOrder(id);
       if(order.body.order_status){
         await orderChange(id)

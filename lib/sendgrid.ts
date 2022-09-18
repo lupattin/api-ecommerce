@@ -1,5 +1,4 @@
 import sgMail from "@sendgrid/mail";
-/* const sgMail = require('@sendgrid/mail') */
 sgMail.setApiKey(process.env.SENDGRID_SECRET);
 
 export async function sendMail(to: string, code: number) {

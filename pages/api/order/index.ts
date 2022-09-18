@@ -14,9 +14,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse, userData: 
        
     const newPreference= await createNewPreference(result, newOrder.id) 
 
-    res.status(200).send({
-      url: newPreference.body.init_point
-    });
+    res.status(200).send(newPreference);
   } catch (error) {
     res.send("ProductID does not match any product");
   }

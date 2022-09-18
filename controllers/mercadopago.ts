@@ -9,7 +9,8 @@ export async function orderChange(id) {
 
     const orderReference = new Order(orderID);
     await orderReference.pull();
-    orderReference.data.status = "closed";
+    orderReference.data.paymentStatus = "closed";
+    await orderReference.push();
   }
   return "ok"
 }
