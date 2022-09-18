@@ -21,6 +21,8 @@ export class Order {
     const newOrder = new Order(newOrderSnap.id);
     newOrder.data = data
     newOrder.data.createdAt = new Date()
+    newOrder.data.paymentStatus = "Pending"
+    newOrder.push()
     
     return newOrder;
 
