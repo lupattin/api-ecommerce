@@ -27,4 +27,14 @@ export class Order {
     return newOrder;
 
   }
+  static async getOrdersFromOneUser(userID){
+   const result = await (await collection.where("userID", "==", userID).get()).docs
+   return result
+  }
+
+  static async getOrderByID(id){
+    const ref = await collection.doc(id)
+    const result = await ref.get()
+    return result.data()
+  }
 }

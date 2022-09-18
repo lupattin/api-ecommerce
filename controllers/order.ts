@@ -47,3 +47,25 @@ export async function createNewPreference(productData, orderID) {
     return error;
   }
 }
+
+export async function getOrdersFromUser(userID) {
+  try {
+    
+    const result = await Order.getOrdersFromOneUser(userID)
+    const dataResult = result.map((doc)=>{
+      return doc.data()
+    })
+    return dataResult
+  } catch (error) {
+    return error
+  }
+}
+export async function getOrderByID(orderID) {
+  try {
+    const result = await Order.getOrderByID(orderID)
+    return result
+  } catch (error) {
+    return error
+  }
+  
+}
