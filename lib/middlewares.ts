@@ -10,9 +10,10 @@ export function authMiddleware(callback): Function{
         res.status(401).send("No token sended")
       }
 
-       const token = req.headers.authorization.split(`"`)[1]
+       const token = req.headers.authorization.split(` `)[1]
+       
        const decoded = decodeToken(token) as any
-  
+      
        if(decoded){
         const userData = new User(decoded.id)
         await userData.pull()

@@ -10,7 +10,7 @@ export function decodeToken(token):string | jwt.JwtPayload {
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     return decode;
   } catch (error) {
-    console.log("token Incorrecto");
+    
     return null;
   }
 }

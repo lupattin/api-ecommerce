@@ -24,6 +24,7 @@ export default methods({
       }
       
     } catch (error) {
+      
       res.status(422).send({field:"body", error})
     }
   }

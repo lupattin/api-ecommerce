@@ -55,6 +55,10 @@ export async function checkCode(email: string, code: number): Promise<String | B
     const authData = result.data;
     if (code == authData.code && isFuture(authData.expire.toDate())) {
       const token = generateToken(authData);
+      
+      result.data.code = 0
+      await result.push()
+      
       return token;
     } else {
       return false;
