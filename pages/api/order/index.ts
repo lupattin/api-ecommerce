@@ -11,10 +11,11 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse, userData: 
     const result = await getProductByID(req.query.productID as string) as any;
 
     const newOrder = await createOrder(req.body, result.objectID, userData.id)
-       
+ 
     const newPreference= await createNewPreference(result, newOrder.id) 
 
     res.status(200).send({
+      orderID: newOrder.id,
       url: newPreference.body.init_point
     });
   } catch (error) {
