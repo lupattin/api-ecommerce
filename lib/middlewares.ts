@@ -36,11 +36,11 @@ export function authMiddleware(callback): Function{
     fn: Function
   ) {
     return new Promise((resolve, reject) => {
-      fn(req, res, (result: any) => {
+      cors(req, res, (result: any) => {
         if (result instanceof Error) {
           return reject(result)
         }
-  
+        fn(req, res)
         return resolve(result)
       })
     })
