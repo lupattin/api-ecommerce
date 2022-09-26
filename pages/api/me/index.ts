@@ -4,6 +4,8 @@ import { authMiddleware } from "../../../lib/middlewares";
 import { User } from "../../../models/user";
 import { updateUser } from "../../../controllers/user";
 import * as yup from "yup"
+import {runCorsMiddleware} from "../../../lib/middlewares"
+
 
 let bodySchema = yup.object().shape({
   email: yup.string(),
@@ -32,4 +34,6 @@ const handler = methods({
   patch: patchHandler
 })
 
-export default authMiddleware(handler);
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  await runCorsMiddleware(req, res, authMiddleware(handler));
+};
