@@ -25,3 +25,4 @@ export function authMiddleware(callback): Function{
        }
     }
   }
+
