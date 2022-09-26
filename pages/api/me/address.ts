@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import methods from "micro-method-router"
-import { authMiddleware } from "../../../lib/middlewares";
+import { authMiddleware, runCorsMiddleware } from "../../../lib/middlewares";
 import {User} from "../../../models/user"
 import {updateUser} from "../../../controllers/user"
 import * as yup from "yup"
+
 
 let bodySchema = yup.object().shape({
   address: yup.string().required()
@@ -25,4 +26,6 @@ const handler = methods({
   patch: patchHandler
 })
 
-export default authMiddleware(handler);
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  await runCorsMiddleware(req, res, authMiddleware(handler));
+};

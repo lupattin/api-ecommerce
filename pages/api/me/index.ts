@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { authMiddleware } from "../../../lib/middlewares";
+import { authMiddleware, runCorsMiddleware } from "../../../lib/middlewares";
 import { User } from "../../../models/user";
 import { updateUser } from "../../../controllers/user";
 import * as yup from "yup"
-import {runCorsMiddleware} from "../../../lib/middlewares"
+
 
 
 let bodySchema = yup.object().shape({
