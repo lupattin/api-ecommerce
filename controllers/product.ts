@@ -11,3 +11,14 @@ export async function getProductByID(id:string) {
         throw error
     }
 }
+export async function getFeaturedProducts() {
+    try {
+               
+          const result = await Product.getAllProducts()
+            console.log(result);
+            
+        return result
+    } catch (error) {
+        throw error
+    }
+}
