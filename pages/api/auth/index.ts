@@ -14,10 +14,10 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
     await bodySchema.validate(req.body)
     try {
       await findOrCreateAuth(req.body.email, req.body.name)
-      res.status(200).send("Codigo enviado correctamente")
+      res.status(200).send({message:"Codigo enviado correctamente."})
       
     } catch (error) {
-      res.status(500).send("Hubo un error, por favor, intentar mas tarde")
+      res.status(500).send({message:"Hubo un error, por favor, intentar mas tarde"})
     }
   } catch (error) {
     res.status(422).send({field:"body", error})
