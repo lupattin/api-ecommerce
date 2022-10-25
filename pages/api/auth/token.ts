@@ -16,9 +16,9 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
     
     if(result == false){
 
-      res.status(401).send("Incorrect code or expired.")
+      res.status(401).send({message:"Incorrect code or expired."})
     }else{
-      res.status(200).send(result)
+      res.status(200).send({token: result})
     }
     
   } catch (error) {
