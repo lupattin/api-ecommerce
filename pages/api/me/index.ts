@@ -9,8 +9,9 @@ import * as yup from "yup"
 
 let bodySchema = yup.object().shape({
   email: yup.string(),
-  name: yup.string()
-}).noUnknown().strict()
+  name: yup.string(),
+  address: yup.string()
+}).noUnknown()
 
 
 function getHandler(req: NextApiRequest, res: NextApiResponse, userData:User) {
