@@ -27,7 +27,7 @@ export function authMiddleware(callback): Function{
   }
 
   const cors = Cors({
-    methods: ['POST', 'GET', 'HEAD', "OPTIONS"],
+    methods: ['POST', 'GET', 'PATCH', 'HEAD', "OPTIONS"],
   })
 
   export function runCorsMiddleware(
