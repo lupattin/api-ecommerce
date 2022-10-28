@@ -23,7 +23,7 @@ async function patchHandler(req: NextApiRequest, res: NextApiResponse, userData:
     await bodySchema.validate(req.body)
     
     const result = await updateUser(userData, req.body)
-    res.send(result)
+    res.send({message:result})
 
   } catch (error) {
     res.status(422).send({field:"body", error})
