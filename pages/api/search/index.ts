@@ -26,10 +26,10 @@ async function getHandler(req: NextApiRequest, res: NextApiResponse) {
         },
       });
     } else {
-      res.send("No products found.");
+      res.send({message: "No products found."});
     }
   } catch (error) {
-    res.send("The limit parameter must be a number between 1 and 100. ");
+    res.send({message: "The limit parameter must be a number between 1 and 100. "});
   }
 }
 
