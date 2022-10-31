@@ -39,7 +39,7 @@ export async function createNewPreference(productData, orderID) {
       ],
 
       back_urls: {
-        success: "http://apx.school",
+        success: "https://next-react-ecommerce-gamma.vercel.app/thankyou",
       },
     });
     return newPreference;
